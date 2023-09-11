@@ -29,6 +29,7 @@ keyboard.add_button('Сегодня', color=vk_api.keyboard.VkKeyboardColor.PRIM
 for event in longpoll.listen():
     if event.to_me:
         time.sleep(1)
+        print(event.user_id)
         if event.text != 'Понедельник' and event.text != 'Вторник' and event.text != 'Среда' and event.text != 'Четверг' and event.text != 'Пятница' and event.text != 'Суббота' and event.text != 'Сегодня':
             vk.messages.send(
                             user_id=event.user_id,
