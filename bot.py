@@ -13,7 +13,7 @@ def spam():
         h_ = datetime.datetime.now().strftime('%H')
         m_ = datetime.datetime.now().strftime('%M')
         S_ = datetime.datetime.now().strftime('%S')
-        if h_ == '22' and m_ == '00' and S_ == '00':
+        if h_ == '22' and m_ == '30' and S_ == '00':
             for user_id in user_id_me:
                 #today = datetime.datetime.now().strftime('%A')
                 tomorrow = datetime.datetime.today() + datetime.timedelta(days=1)
