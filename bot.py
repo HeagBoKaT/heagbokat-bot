@@ -5,7 +5,7 @@ import time
 import datetime
 import threading
 
-
+send = False
 def spam():
     while True:
         time.sleep(1)
@@ -14,33 +14,38 @@ def spam():
         m_ = datetime.datetime.now().strftime('%M')
         S_ = datetime.datetime.now().strftime('%S')
         if h_ == '22' and m_ == '30' and S_ == '00':
-            for user_id in user_id_me:
-                #today = datetime.datetime.now().strftime('%A')
-                tomorrow = datetime.datetime.today() + datetime.timedelta(days=1)
-                tomorrow = tomorrow.strftime('%A')
-                file_name_tomorrow = str(tomorrow).lower()+"+.heagbokat"
-                with open(file_name_tomorrow, 'r', encoding='utf-8') as f:
-                    txt = f.read()
-                vk.messages.send(
-                                            user_id=user_id,
-                                            message="ДОРОГИЕ ДРУЗЬЯ!!!\n"+"Завтра вас ждет это:\n"+txt,
-                                            random_id=0,
-                                            keyboard=keyboard.get_keyboard()
-                                            )
-                #print(main_time)
-        if h_ == '07' and m_ == '00' and S_ == '00':
-            for user_id in user_id_me:
-                today = datetime.datetime.now().strftime('%A')
-                file_name_today = str(today).lower()+"+.heagbokat"
-                with open(file_name_today, 'r', encoding='utf-8') as f:
-                    txt = f.read()
-                vk.messages.send(
-                                            user_id=user_id,
-                                            message="Сегодня утром вас ждет это:\n"+txt,
-                                            random_id=0,
-                                            keyboard=keyboard.get_keyboard()
-                                            )
-                #print(main_time)
+            if send == False:
+                send = True
+                for user_id in user_id_me:
+                    #today = datetime.datetime.now().strftime('%A')
+                    tomorrow = datetime.datetime.today() + datetime.timedelta(days=1)
+                    tomorrow = tomorrow.strftime('%A')
+                    file_name_tomorrow = str(tomorrow).lower()+"+.heagbokat"
+                    with open(file_name_tomorrow, 'r', encoding='utf-8') as f:
+                        txt = f.read()
+                    vk.messages.send(
+                                                user_id=user_id,
+                                                message="ДОРОГИЕ ДРУЗЬЯ!!!\n"+"Завтра вас ждет это:\n"+txt,
+                                                random_id=0,
+                                                keyboard=keyboard.get_keyboard()
+                                                )
+                    #print(main_time)           
+        if h_ == '07' and m_ == '30' and S_ == '00':
+            if send == False:
+                send = True
+                for user_id in user_id_me:
+                    today = datetime.datetime.now().strftime('%A')
+                    file_name_today = str(today).lower()+"+.heagbokat"
+                    with open(file_name_today, 'r', encoding='utf-8') as f:
+                        txt = f.read()
+                    vk.messages.send(
+                                                user_id=user_id,
+                                                message="Сегодня утром вас ждет это:\n"+txt,
+                                                random_id=0,
+                                                keyboard=keyboard.get_keyboard()
+                                                )
+                    #print(main_time)
+        send = False
     pass
 # Токен вашего сообщества
 TOKEN = 'vk1.a.qf1brHS5W4SQ4XmMXlO9nBC6fYjg5VfEhMzcFRHLmGn1VYu-l_BDgzwc08nKMCCw2BDXQEgCcaHxFGCwJLjw-f8Q4LEJ0wF5FJWVLpjVGAXmcB1I10l8sFY3_r2TlScPdCreHZzSQN3hWthgSncNRrO2HjwNFK2_k1fuzeQKmxr5YKsNIu5Pcucd-QrqNdJsIq-fGjVK5YCO7JlIxoyO4w'
