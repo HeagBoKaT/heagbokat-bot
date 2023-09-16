@@ -68,10 +68,10 @@ keyboard.add_button('Суббота', color=vk_api.keyboard.VkKeyboardColor.PRIM
 keyboard.add_line()
 keyboard.add_button('Сегодня', color=vk_api.keyboard.VkKeyboardColor.PRIMARY)
 # Основной цикл бота
+thread = threading.Thread(target=spam)
+thread.start()
 while True:
     try:
-        thread = threading.Thread(target=spam)
-        thread.start()
         for event in longpoll.listen():
             if event.to_me:
                 time.sleep(1)
