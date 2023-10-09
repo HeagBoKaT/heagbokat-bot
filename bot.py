@@ -22,29 +22,31 @@ def spam():
                         #today = datetime.datetime.now().strftime('%A')
                         tomorrow = datetime.datetime.today() + datetime.timedelta(days=1)
                         tomorrow = tomorrow.strftime('%A')
-                        file_name_tomorrow = str(tomorrow).lower()+"+.heagbokat"
-                        with open(file_name_tomorrow, 'r', encoding='utf-8') as f:
-                            txt = f.read()
-                        vk.messages.send(
-                                                    user_id=user_id,
-                                                    message="ДОРОГИЕ ДРУЗЬЯ!!!\n"+"Завтра вас ждет это:\n"+txt,
-                                                    random_id=0,
-                                                    keyboard=keyboard.get_keyboard()
-                                                    )
+                        if (tomorrow != 'Sunday'.lower()):
+                            file_name_tomorrow = str(tomorrow).lower()+"+.heagbokat"
+                            with open(file_name_tomorrow, 'r', encoding='utf-8') as f:
+                                txt = f.read()
+                            vk.messages.send(
+                                                        user_id=user_id,
+                                                        message="ДОРОГИЕ ДРУЗЬЯ!!!\n"+"Завтра вас ждет это:\n"+txt,
+                                                        random_id=0,
+                                                        keyboard=keyboard.get_keyboard()
+                                                        )
                 else:
                     for user_id in user_id_me:
                         #today = datetime.datetime.now().strftime('%A')
                         tomorrow = datetime.datetime.today() + datetime.timedelta(days=1)
                         tomorrow = tomorrow.strftime('%A')
-                        file_name_tomorrow = str(tomorrow).lower()+"-.heagbokat"
-                        with open(file_name_tomorrow, 'r', encoding='utf-8') as f:
-                            txt = f.read()
-                        vk.messages.send(
-                                                    user_id=user_id,
-                                                    message="ДОРОГИЕ ДРУЗЬЯ!!!\n"+"Завтра вас ждет это:\n"+txt,
-                                                    random_id=0,
-                                                    keyboard=keyboard.get_keyboard()
-                                                    )
+                        if (tomorrow != 'Sunday'.lower()):
+                            file_name_tomorrow = str(tomorrow).lower()+"-.heagbokat"
+                            with open(file_name_tomorrow, 'r', encoding='utf-8') as f:
+                                txt = f.read()
+                            vk.messages.send(
+                                                        user_id=user_id,
+                                                        message="ДОРОГИЕ ДРУЗЬЯ!!!\n"+"Завтра вас ждет это:\n"+txt,
+                                                        random_id=0,
+                                                        keyboard=keyboard.get_keyboard()
+                                                        )
                         #print(main_time)           
         if h_ == '07' and m_ == '30' and S_ == '00':
             if send == False:
@@ -235,28 +237,36 @@ while True:
                                                 keyboard=keyboard.get_keyboard()
                                                 )
                         case 'Сегодня':
-                            if int(week_number)%2 == 1:
-                                name_today = str(today).lower()+"+.heagbokat"
-                                #print(name_today)
-                                with open(name_today, 'r', encoding='utf-8') as f:
-                                    txt = f.read()
+                            if today.lower() == 'sunday':
                                 vk.messages.send(
                                                 user_id=event.user_id,
-                                                message=txt+"\n"+ main_time,
+                                                message="Спать надо и чиллить",
                                                 random_id=0,
                                                 keyboard=keyboard.get_keyboard()
                                                 )
                             else:
-                                name_today = str(today).lower()+"-.heagbokat"
-                                #print(name_today)
-                                with open(name_today, 'r', encoding='utf-8') as f:
-                                    txt = f.read()
-                                vk.messages.send(
-                                                user_id=event.user_id,
-                                                message=txt+"\n"+ main_time,
-                                                random_id=0,
-                                                keyboard=keyboard.get_keyboard()
-                                                )
+                                if int(week_number)%2 == 1:
+                                    name_today = str(today).lower()+"+.heagbokat"
+                                    #print(name_today)
+                                    with open(name_today, 'r', encoding='utf-8') as f:
+                                        txt = f.read()
+                                    vk.messages.send(
+                                                    user_id=event.user_id,
+                                                    message=txt+"\n"+ main_time,
+                                                    random_id=0,
+                                                    keyboard=keyboard.get_keyboard()
+                                                    )
+                                else:
+                                    name_today = str(today).lower()+"-.heagbokat"
+                                    #print(name_today)
+                                    with open(name_today, 'r', encoding='utf-8') as f:
+                                        txt = f.read()
+                                    vk.messages.send(
+                                                    user_id=event.user_id,
+                                                    message=txt+"\n"+ main_time,
+                                                    random_id=0,
+                                                    keyboard=keyboard.get_keyboard()
+                                                    )
     except Exception:
         pass
         
