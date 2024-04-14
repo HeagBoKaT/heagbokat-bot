@@ -5,6 +5,8 @@ import time
 import datetime
 import threading
 
+# ofmdomos
+
 send = False
 def spam():
     while True:
