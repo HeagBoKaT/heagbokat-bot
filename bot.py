@@ -4,7 +4,6 @@ from vk_api.keyboard import VkKeyboard
 import time
 import datetime
 import threading
-import sys
 
 send = False
 def spam():
